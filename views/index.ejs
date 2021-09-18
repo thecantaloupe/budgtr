@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <%- include("partials/head.ejs", {title: 'Budget - Index Page'}) %> 
+    <%- include("./partials/header.ejs") %>
+    <body>
+
+        <!-- Primary Page Layout
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <div class="container">
+          <div class="row">
+            <div class="one-half column" style="margin-top: 25%">
+                <h4>Budgets index page</h4>
+                <nav>
+                    <a href="/budgets/new">Create New Budget</a>
+                </nav>
+                <ul>
+                    <% for(let i = 0; i < allBudgets.length; i++){ %>
+          
+                        <li>
+                            <a href="/budgets/<%= i %>">
+                                <%= allBudgets[i].name %>
+                            </a>
+                            <form action="/budgets/<%= i %>?_method=DELETE" method="POST">
+                                <input type="submit" value="DELETE">
+                            </form>
+                            <a href="/budgets/<%= i %>/edit">EDIT</a>
+                        </li>
+          
+                    <% } %>
+                </ul>
+                <%- include("./partials/footer.ejs") %>
+            </div>
+          </div>
+        </div>
+      
+      <!-- End Document
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    </body>
+</html>
