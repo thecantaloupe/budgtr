@@ -23,17 +23,15 @@ app.use((req, res, next) => {
 // Parse Request Bodies if Content-Type Header is: application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
 //register the method-override middleware
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 // serve files statically from the public folder
-app.use(express.static("public"))
+app.use(express.static(__dirname + "/public"));
 
 //////////////////////////////////////////////
 // Routes
 //////////////////////////////////////////////
-// Index
 
-
-//Show
+//Index
 app.get("/budgets/", (req, res) => {
     res.render("index.ejs", { allBudgets: budgets});
   });
@@ -48,6 +46,11 @@ app.post("/budgets", (req,res) => {
     budgets.push(req.body)
     res.redirect("/budgets")
 })
+
+// SHOW ROUTES - GETS ONE FRUIT
+app.get("/budgets/:indexOfBudgetsArray", (req, res) => {
+    res.render("show.ejs", { budget: budgets[req.params.indexOfBudgetsArray] });
+  });
 
 //Listen to Port
 app.listen(port, () => {

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <%- include("partials/head.ejs", {title: 'Budget - Show Page'}) %> 
+    <%- include("./partials/header.ejs") %>
+    <body>
+        <div class="container">
+            <h1><%=budget.name%></h1>
+            <a href="/budgets/" class="button"><strong>BackToBudgets</strong></a>
+            <% Object.keys(budget).forEach((key, value) => { %>
+                <div class="row">
+                    <div class="two column"><strong><%=key[0].toUpperCase() + key.substring(1) %></strong></div>
+                    <div class="ten columns"><%=budget[key]%></div>
+                </div>
+            <% }) %>
+        </div>
+    </body>
+    <%- include("./partials/footer.ejs") %>
+</html> 

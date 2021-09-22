@@ -18,6 +18,7 @@
                       <th>Name</th>
                       <th>From</th>
                       <th>Amount</th>
+                      <th>Tags</th>
                       <th>edit</th>
                     </tr>
                   </thead>
@@ -36,6 +37,7 @@
                             <!-- <form action="/budgets/<%= i %>?_method=DELETE" method="POST">
                                 <input type="submit" value="DELETE">
                             </form> -->
+                            <td><%= allBudgets[i].tags.join(", ") %></td>
                             <td>
                                 <a href="/budgets/<%= i %>/edit">EDIT</a>
                             </td>
@@ -44,8 +46,8 @@
                         <% } %>
                     </tbody>
                 </table>
-                    <%- include("./partials/footer.ejs") %>
             </div>
+            <%- include("./partials/footer.ejs") %>
           </div>
         </div>
       
