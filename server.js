@@ -16,10 +16,10 @@ app.use(methodOverride('_method'));
 //////////////////////////////////////////////
 // MIDDLEWARE
 //////////////////////////////////////////////
-app.use((req, res, next) => {
-    console.log("middleware was used")
-    next()
-})
+// app.use((req, res, next) => {
+//     console.log("middleware was used")
+//     next()
+// })
 // Parse Request Bodies if Content-Type Header is: application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
 //register the method-override middleware
@@ -33,7 +33,8 @@ app.use(express.static(__dirname + "/public"));
 
 //Index
 app.get("/budgets/", (req, res) => {
-    res.render("index.ejs", { allBudgets: budgets});
+    res.render("index.ejs", {
+      allBudgets: budgets});
   });
 
 // New

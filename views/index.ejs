@@ -23,10 +23,19 @@
                     </tr>
                   </thead>
                   <tbody>
+                      <!-- Clear Empty Fields -->
                       <% for(let i = 0; i < allBudgets.length; i++){ %>
-                        
+                        <% let tags = allBudgets[i].tags
+                            let newTags = []
+                            for (tag of tags) {
+                                if (tag !== "") {
+                                    newTags.push(tag)}}%>
+                        <!-- Convert date so all dates match format -->
+                        <%  let inputs = allBudgets[i].date
+                            let date  = (new Date(inputs).toDateString("en-US", {timeZone: "America/Los_Angeles"})).split(" ").splice(1,2).join(" ") %>
                         <tr>
-                            <td><%= allBudgets[i].date %></td>
+                            <td>
+                                <%= date %></td>
                             <td>
                                 <a href="/budgets/<%= i %>">
                                     <%= allBudgets[i].name %>
@@ -37,7 +46,7 @@
                             <!-- <form action="/budgets/<%= i %>?_method=DELETE" method="POST">
                                 <input type="submit" value="DELETE">
                             </form> -->
-                            <td><%= allBudgets[i].tags.join(", ") %></td>
+                            <td><%= newTags.join(", ") %></td>
                             <td>
                                 <a href="/budgets/<%= i %>/edit">EDIT</a>
                             </td>
@@ -50,7 +59,10 @@
             <%- include("./partials/footer.ejs") %>
           </div>
         </div>
-      
+    <!-- <script>
+        var inputs  = $("input[type='date']").value
+        var date  = (new Date(inputs).toDateString("en-US", {timeZone: "America/Los_Angeles"})).split(" ").splice(1,2).join(" ") 
+    </script> -->
       <!-- End Document
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     </body>
