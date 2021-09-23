@@ -9,6 +9,15 @@
         <div class="container">
             <table class="u-full-width">
                 <h4>Budgtr</h4>
+                <% 
+                let balance = 0
+                for(let i = 0; i < allBudgets.length; i++) {
+                    console.log(typeof(allBudgets[i].amount)) 
+                    balance += Number(allBudgets[i].amount)
+                    }
+                    let dateNow  = (new Date().toDateString("en-US", {timeZone: "America/Los_Angeles"}))
+                %>
+                <p>Bank Balance: <i><%= balance %></i><br><%=dateNow%></p>
                 <nav>
                     <a href="/budgets/new">Create New Item</a>
                 </nav>
